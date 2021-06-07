@@ -46,15 +46,15 @@ namespace RandomGameDialog.Web.Controllers
             else if (command == "search" && commandParams.Any())
             {
                 var line = _dataStore.GetRandomLine(tokens: commandParams);
-                return string.IsNullOrWhiteSpace(line) ? BadRequest(new { response_type = "ephemeral", text = "No dialogue matching specified criteria" }) : Ok(new { response_type = "in_channel", text = line });
+                return string.IsNullOrWhiteSpace(line) ? Ok(new { response_type = "ephemeral", text = "No dialogue matching specified criteria" }) : Ok(new { response_type = "in_channel", text = line });
             }
             else if (command == "filter" && commandParams.Any())
             {
                 var line = _dataStore.GetRandomLine(filter: commandParams.First());
-                return string.IsNullOrWhiteSpace(line) ? BadRequest(new { response_type = "ephemeral", text = "No dialogue matching specified criteria" }) : Ok(new { response_type = "in_channel", text = line });
+                return string.IsNullOrWhiteSpace(line) ? Ok(new { response_type = "ephemeral", text = "No dialogue matching specified criteria" }) : Ok(new { response_type = "in_channel", text = line });
             }
 
-            return BadRequest(new
+            return Ok(new
             {
                 response_type = "ephemeral",
                 text = "You have failed to provide a valid request. For that you shall pay with your blood!"
